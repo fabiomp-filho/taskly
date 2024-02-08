@@ -1,19 +1,16 @@
 package com.ce.fabiompfilho.taskly.enums;
 
-
 import lombok.Getter;
 
 @Getter
-public enum StatusEnum {
+public enum RoleEnum {
 
-    PENDING("Pending"),
-    IN_PROGRESS("In Progress"),
-    COMPLETED("Completed");
+    ADMIN("Administrator"),
+    USER("Author");
 
     private final String description;
 
-    StatusEnum(String description) {
+    RoleEnum(String description) {
         this.description = description;
     }
-
 }
