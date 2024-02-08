@@ -1,4 +1,4 @@
-package com.ce.fabiompfilho.taskly.model;
+package com.ce.fabiompfilho.taskly.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

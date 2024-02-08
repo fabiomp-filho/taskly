@@ -1,4 +1,4 @@
-package com.ce.fabiompfilho.taskly.model;
+package com.ce.fabiompfilho.taskly.models;
 
 import com.ce.fabiompfilho.taskly.enums.RoleEnum;
 import jakarta.persistence.*;
