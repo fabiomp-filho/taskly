@@ -2,13 +2,12 @@ package com.ce.fabiompfilho.taskly.models;
 
 import com.ce.fabiompfilho.taskly.enums.StatusEnum;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -20,19 +19,19 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-public class Task {
+public class Task implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long id;
 
-    @Size(message = "title must have a max of 50 chars", max = 50)
-    @NotEmpty(message = "field title can't be null")
     @Column(nullable = false, length = 50)
     private String title;
 
-    @NotEmpty(message = "field description can't be null")
     @Column(nullable = false, length = 500)
     private String description;
 
@@ -41,19 +40,19 @@ public class Task {
     private LocalDate createdAt;
 
     @Column(nullable = false)
-    @NotNull(message = "field date can't be null")
     private LocalDate dueDate;
 
-    @NotNull(message = "field status can't be null")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusEnum status;
 
-//    @ManyToOne
-//    @JoinColumn(name = "category_id")
-//    private Category category;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Override
     public final boolean equals(Object o) {

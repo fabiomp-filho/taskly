@@ -7,6 +7,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -17,19 +19,29 @@ import java.util.Collections;
 @Setter
 @ToString
 @Entity
-public class User implements UserDetails {
+public class User implements UserDetails, Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true, length = 20)
     private String username;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false, unique = true)
     private String email;
 
-    private String fullName;
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
 
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
